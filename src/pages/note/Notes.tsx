@@ -2,6 +2,7 @@ import type { Note } from "@/types";
 import EmptyState from "./EmptyState";
 import empty from "@/assets/empty2.png";
 import { Clock, Pin, Star } from "lucide-react";
+import { Link } from "react-router-dom";
 type Props = {
   notes: Note[];
   loading: boolean;
@@ -28,7 +29,8 @@ function Notes({ notes, loading }: Props) {
               pinned,
             }) => {
               return (
-                <div
+                <Link
+                  to={`${id}`}
                   key={id}
                   className=" grid grid-cols-2 h-[256px] rounded-[12px] hover:bg-highlight-0 transition-colors duration-300  ease-in-out cursor-pointer relative"
                 >
@@ -53,11 +55,13 @@ function Notes({ notes, loading }: Props) {
 
                     <h5 className=" text-txt-secondary-white">{subHeading}</h5>
                   </div>
-                  <div className="absolute bottom-6 right-6 flex items-center justify-center gap-2 text-xs">
-                    <Clock size={20} />
-                    {readDuration && <span>{readDuration} mins read </span>}
-                  </div>
-                </div>
+                  {readDuration && (
+                    <div className="absolute bottom-6 right-6 flex items-center justify-center gap-2 text-xs">
+                      <Clock size={20} />
+                      <span>{`${readDuration} mins read`} </span>
+                    </div>
+                  )}
+                </Link>
               );
             }
           )}
