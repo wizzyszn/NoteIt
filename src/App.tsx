@@ -6,6 +6,7 @@ import AnimatedPage from "./components/AnimatedPage";
 import AnimatedRouterProvider from "./components/AnimatedRouterProvider";
 import Note from "./pages/note";
 import SingleNote from "./pages/note/SingleNote";
+import Home from "./pages";
 
 // Layout component to wrap all routes
 const Layout: React.FC = () => {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <Layout />,
     children: [
+      {
+        path : '',
+        element : <Home />
+      },
       {
         path: "auth/login",
         element: <Login />,
